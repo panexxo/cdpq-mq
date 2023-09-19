@@ -1,0 +1,14 @@
+* Define the local queue that the on-premises application would consume from
+DEFINE QLOCAL(LOCAL)
+* Define transmit queue that will be used for the on-prem sender channel
+DEFINE QLOCAL(TO.CLOUD) USAGE(XMITQ)
+* Create remote queue definition to route reply messages back to the cloud
+DEFINE QREMOTE(LOCAL.REPLY) RNAME(LOCAL.REPLY) RQMNAME('QMCLOUD') XMITQ(TO.CLOUD)
+* Define the on-premises sender channel that will connect to the cloud
+DEFINE CHANNEL(ONPREM.TO.CLOUD) CHLTYPE(SDR) +
+CONNAME('qmcloud-d930.qm.us-south.mq.appdomain.cloud(32067)') XMITQ(TO.CLOUD) TRPTYPE(TCP)
+* Define requester channel that will call out from on-prem queue manager
+DEFINE CHANNEL(CLOUD.TO.ONPREM) CHLTYPE(RQSTR) +
+CONNAME('qmcloud-d930.qm.us-south.mq.appdomain.cloud(32067)') TRPTYPE(TCP)
+* Create the authentication record to allow incoming connections from the cloud QM
+SET CHLAUTH(CLOUD.TO.ONPREM) TYPE(QMGRMAP) QMNAME('QMCLOUD') ACTION(ADD) USERSRC(CHANNEL) 

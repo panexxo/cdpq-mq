@@ -1,0 +1,14 @@
+* Define the transmit queue that will be used for the cloud sender channel
+DEFINE QLOCAL(TO.ONPREM) USAGE(XMITQ)
+* Create a remote queue definition that allows messages to be addressed to the on-premises queue
+DEFINE QREMOTE(LOCAL) RNAME(LOCAL) RQMNAME(QM1) XMITQ(TO.ONPREM)
+* Define the local queue that will be used to hold reply messages from the on-premises Stock application
+DEFINE QLOCAL(LOCAL.REPLY)
+* Define the server channel that will respond to the on-prem requester channel
+DEFINE CHANNEL(CLOUD.TO.ONPREM) CHLTYPE(SVR) XMITQ(TO.ONPREM) TRPTYPE(TCP)
+* Define receiver channel to accept connections from on-prem sender channel
+DEFINE CHANNEL(ONPREM.TO.CLOUD) CHLTYPE(RCVR) TRPTYPE(TCP)
+* Create the channel authentication record to allow incoming connections from the on-prem QM sender channel
+SET CHLAUTH(ONPREM.TO.CLOUD) TYPE(QMGRMAP) QMNAME(QM1) ACTION(ADD) USERSRC(CHANNEL)
+* Create the channel authentication record to allow incoming connections from the on-prem QM requester channel
+SET CHLAUTH(CLOUD.TO.ONPREM) TYPE(QMGRMAP) QMNAME(QM1) ACTION(ADD) USERSRC(CHANNEL)
