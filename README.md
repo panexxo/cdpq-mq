@@ -9,7 +9,7 @@ Also documents question on how to execute particular functions over MQ-Client an
 
 <br><br>
 
-## 1.- Connection to MQ=Cloud Queue manager with java client version 9.0
+## 1.- Connection to MQ-Cloud Queue manager with java client version 9.0
 
 On the folder [JavaClient9.0](https://github.ibm.com/tech-garage-canada/cdpq-mq/tree/main/JavaClient9.0) there is a simple Java app that puts a message by using client library 9.0.5.
 
@@ -72,7 +72,7 @@ To track how users and applications interact with the IBM MQ on Cloud service, c
 
 [Activity tracker](https://cloud.ibm.com/docs/mqcloud?topic=mqcloud-at_events)
 
-Metrics can be retrieved by creating a Sysdig instance in IBM Cloud. (paid plans)
+Some metrics may be retrieved by creating a Sysdig instance in IBM Cloud. (paid plans)
 [Monitoring a Queue Manager](https://cloud.ibm.com/docs/mqcloud?topic=mqcloud-monitor_sysdig)
 
 Any MQ tools will need to support client mode to connect to the qmgr which it looks like amqsact and dmpmqlog do not support. 
