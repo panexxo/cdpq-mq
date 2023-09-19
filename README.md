@@ -50,7 +50,7 @@ To avoid include the password on all the files of MQSC commands, the password co
 
 ## 3.- Use of Internal Users on IBM-MQ Cloud 
 
-IBM recommends using MQ on IBM Cloud and leverage IBM Cloud IAM Identity Services REST API capabilities described
+IBM recommends using MQ on IBM Cloud and leverage IBM Cloud IAM Identity Services REST API capabilities [Doc reference](https://github.com/panexxo/cdpq-mq/blob/main/docs/CDPQ%20-%20MQ%20on%20Cloud-Options.pdf) 
 
 [IAM Identity services](https://cloud.ibm.com/apidocs/iam-identity-token-api#introduction)
 
